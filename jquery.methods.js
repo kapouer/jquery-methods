@@ -18,7 +18,7 @@ function getMethodHandler(method) {
 		if (/\/$/.test(base)) base = base.substring(0, base.length - 1);
 		url = url.replace(/^\.\./, base.split('/').slice(0, -1).join('/'));
 		url = url.replace(/^\./, base);
-		var opts = {headers: {"X-Requested-With": "XMLHttpRequest"}};
+		var opts = {};
 		if (/^(HEAD|GET|COPY|DELETE)$/i.test(meth)) {
 			query = query || body || {};
 			if (meth == "GET") meth = null;
@@ -30,7 +30,8 @@ function getMethodHandler(method) {
 			opts.contentType = "application/json; charset=utf-8";
 			opts.data = JSON.stringify(body);
 		}
-		if (meth) opts.headers["X-HTTP-Method-Override"] = meth;
+		//  use custom header - all right with preflighted since it's not GET anyway
+		if (meth) opts.headers = {"X-HTTP-Method-Override": meth};
 		var qobj = {};
 		for (var k in query) qobj[k] = query[k];
 		if (query) url = url.replace(/\/:(\w+)/g, function(str, name) {
