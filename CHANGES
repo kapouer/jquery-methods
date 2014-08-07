@@ -1,0 +1,5 @@
+0.1.1
+=====
+
+* fix a bug with cross-domain requests and custom X-Requested-With
+  HTTP header: it initiates a preflighted request.
