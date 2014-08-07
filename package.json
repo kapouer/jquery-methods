@@ -1,0 +1,24 @@
+{
+  "name": "jquery-methods",
+  "version": "0.1.0",
+  "description": "A little jquery request API focused on REST, express-style url building, and nodejs-style callbacks",
+  "main": "jquery.methods.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kapouer/jquery-methods.git"
+  },
+  "keywords": [
+    "jquery",
+    "rest",
+    "request",
+    "callback"
+  ],
+  "author": "Jérémy Lal <kapouer@melix.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kapouer/jquery-methods/issues"
+  }
+}
