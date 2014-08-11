@@ -22,3 +22,16 @@ $.PUT as a POST request.
 All of these set "X-HTTP-Method-Override" HTTP header (expect weird corner
 cases when dealing with cross-domain requests and preflighted requests).
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Preflighted_requests
+
+$.PUT or $.POST have these signatures:
+(url, query, body, cb)
+(url, body, cb)
+(url, body)
+(url, cb)
+(url)
+
+All other methods without body have:
+(url, query, cb)
+(url, query)
+(url, cb)
+(url)
