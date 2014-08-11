@@ -5,9 +5,8 @@ function getMethodHandler(method) {
 		if (!cb) {
 			if (typeof body == "function") {
 				cb = body;
-				body = query;
-				query = null;
-			} else if (!body && typeof query == "function") {
+				body = null;
+			} else if (typeof query == "function") {
 				cb = query;
 				query = null;
 			} else {
@@ -26,7 +25,7 @@ function getMethodHandler(method) {
 			if (meth == "GET") meth = null;
 			opts.type = 'GET';
 		} else {
-			body = body || {};
+			body = body || query || {};
 			if (meth == "POST") meth = null;
 			opts.type = "POST";
 			opts.contentType = "application/json; charset=utf-8";
