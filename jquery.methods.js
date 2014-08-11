@@ -10,6 +10,8 @@ function getMethodHandler(method) {
 			} else if (!body && typeof query == "function") {
 				cb = query;
 				query = null;
+			} else {
+				cb = function() {};
 			}
 		}
 		if (url.pathname) url = url.toString();
