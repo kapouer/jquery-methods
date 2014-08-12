@@ -1,3 +1,8 @@
+0.1.4
+=====
+
+* cb(status, body) instead of just cb(status) on errors
+
 0.1.3
 =====
 
