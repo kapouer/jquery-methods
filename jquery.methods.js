@@ -56,7 +56,7 @@ function getMethodHandler(method) {
 				return cb(null, body);
 			} else {
 				if (!status) status = -1;
-				return cb(status, body);
+				return cb(status, body && body.responseText);
 			}
 		});
 	};
