@@ -1,3 +1,8 @@
+0.1.6
+=====
+
+* fix POST or PUT (body, cb) call - empty query in that case
+
 0.1.5
 =====
 
