@@ -25,11 +25,14 @@ function getMethodHandler(method) {
 			if (meth == "GET") meth = null;
 			opts.type = 'GET';
 		} else {
-			body = body || query || {};
+			if (!body && query) {
+				body = query;
+				query = null;
+			}
 			if (meth == "POST") meth = null;
 			opts.type = "POST";
 			opts.contentType = "application/json; charset=utf-8";
-			opts.data = JSON.stringify(body);
+			opts.data = body && JSON.stringify(body) || null;
 		}
 		//  use custom header - all right with preflighted since it's not GET anyway
 		if (meth) opts.headers = {"X-HTTP-Method-Override": meth};
