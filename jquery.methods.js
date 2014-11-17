@@ -31,8 +31,13 @@ function getMethodHandler(method) {
 			}
 			if (meth == "POST") meth = null;
 			opts.type = "POST";
-			opts.contentType = "application/json; charset=utf-8";
-			opts.data = body && JSON.stringify(body) || null;
+			if (/\.php$/.test(url)) {
+				opts.contentType = "application/x-www-form-urlencoded; charset=utf-8";
+				opts.data = body || null;
+			} else {
+				opts.contentType = "application/json; charset=utf-8";
+				opts.data = body && JSON.stringify(body) || null;
+			}
 		}
 		//  use custom header - all right with preflighted since it's not GET anyway
 		if (meth) opts.headers = {"X-HTTP-Method-Override": meth};
@@ -59,7 +64,7 @@ function getMethodHandler(method) {
 				return cb(null, body);
 			} else {
 				if (!status) status = -1;
-				return cb(status, body && body.responseText);
+				return cb(status, body && body.responseText || body);
 			}
 		});
 	};
