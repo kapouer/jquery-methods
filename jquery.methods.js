@@ -20,7 +20,7 @@ function getMethodHandler(method) {
 		url = url.replace(/^\.\./, base.split('/').slice(0, -1).join('/'));
 		url = url.replace(/^\./, base);
 		var opts = {};
-		if (/^(HEAD|GET|COPY|DELETE)$/i.test(meth)) {
+		if (/^(HEAD|GET|COPY)$/i.test(meth)) {
 			query = query || body || {};
 			if (meth == "GET") meth = null;
 			opts.type = 'GET';
