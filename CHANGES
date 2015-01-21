@@ -1,3 +1,9 @@
+0.3.0
+=====
+
+* if a parameter in query arg (which could be a body) match a
+  url substitution, use it and remove it from query (or body)
+
 0.2.0
 =====
 
