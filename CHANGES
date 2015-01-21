@@ -1,3 +1,8 @@
+0.2.0
+=====
+
+* DELETE is not GET-like - it is POST-like and accepts a body
+
 0.1.6
 =====
 
