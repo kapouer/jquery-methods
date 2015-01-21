@@ -19,6 +19,20 @@ function getMethodHandler(method) {
 		if (/\/$/.test(base)) base = base.substring(0, base.length - 1);
 		url = url.replace(/^\.\./, base.split('/').slice(0, -1).join('/'));
 		url = url.replace(/^\./, base);
+
+		// consume url parameters from query object (even if it is a body)
+		if (query) {
+			url = url.replace(/\/:(\w+)/g, function(str, name) {
+				var val = query[name];
+				if (val != null) {
+					delete query[name];
+					return '/' + val;
+				} else {
+					return '/:' + name;
+				}
+			});
+		}
+
 		var opts = {};
 		if (/^(HEAD|GET|COPY)$/i.test(meth)) {
 			query = query || body || {};
@@ -41,18 +55,8 @@ function getMethodHandler(method) {
 		}
 		//  use custom header - all right with preflighted since it's not GET anyway
 		if (meth) opts.headers = {"X-HTTP-Method-Override": meth};
-		var qobj = {};
-		for (var k in query) qobj[k] = query[k];
-		if (query) url = url.replace(/\/:(\w+)/g, function(str, name) {
-			var val = qobj[name];
-			if (val != null) {
-				delete qobj[name];
-				return '/' + val;
-			} else {
-				return '/:' + name;
-			}
-		});
-		var querystr = $.param(qobj || {});
+
+		var querystr = $.param(query || {});
 		if (querystr) url += (url.indexOf('?') > 0 ? "&" : "?") + querystr;
 		opts.url = url;
 
